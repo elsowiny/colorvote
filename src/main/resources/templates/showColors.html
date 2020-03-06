@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+          <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <title>Colors</title>
+        </head>
+        
+    <body>
+    
+    <div class="container">
+        <h2>Colors</h2>
+		<p>Click on the Color Name to see how many votes for that color.</p>
+        <table class="table table-bordered table-striped">
+       		<thead class="thead-light">
+       			<tr>
+       				<th>Color</th>
+       				<th>Votes</th>
+       			</tr>
+       		</thead>
+
+              <tr th:each="tempVar: ${colorsandvotes}">
+             <td>
+             	<a href="#">
+             	<div th:data-color="${tempVar.color}" th:text="${tempVar.color}" onclick="display(this.getAttribute('data-color'));">
+             </div>
+             	</a>
+             </td>
+             
+           <td><div th:id="${tempVar.color}" th:text="${tempVar.votes}" style="display: none"></div></td>
+                 	
+                </tr>
+        </table>
+   
+        
+        </div>
+        
+        <script th:inline="javascript">
+        <!-- function to change display to block -->
+        function display(div_id){
+            var div = document.getElementById(div_id);
+            div.style.display="block";
+        }
+	</script>
+        
+    </body>
+</html>
